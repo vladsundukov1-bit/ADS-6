@@ -30,12 +30,12 @@ class TPQueue {
 
 void push(const T& item) {
         Node* nNode = new Node(item);
-if (item.prior > head->data.prior) {
+if (!head || item.prior > head->data.prior) {
             nNode->next = head;
             head = nNode;
         } else {
             Node* current = head;
-            while (current->next != nullptr && current->next->data.prior >= item.prior) {
+            while (current->next && current->next->data.prior >= item.prior) {
                 current = current->next;
             }
             nNode->next = current->next;
