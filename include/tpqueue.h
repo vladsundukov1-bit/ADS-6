@@ -2,18 +2,23 @@
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
 
+struct SYM {
+  char ch;
+  int prior;
+};
+
 template<typename T>
 class TPQueue {
-  private:
+ private:
     struct Node {
         T data;
         Node* next;
-        Node(const T& value) : data(value), next(nullptr) {}
+        explicit Node(const T& value) : data(value), next(nullptr) {}
     };
 
     Node* head;
 
-public:
+ public:
     TPQueue() : head(nullptr) {}
     ~TPQueue() {
         while (head != nullptr) {
@@ -45,11 +50,6 @@ T pop() {
       delete temp;
       return result;
     }
-};
-
-struct SYM {
-  char ch;
-  int prior;
 };
 
 #endif  // INCLUDE_TPQUEUE_H_
